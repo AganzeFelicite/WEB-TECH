@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <title>Signup Form</title>
+</head>
+<body>
+    <div class="container">
+        <form action="" method="POST">
+            <h2>Signup</h2>
+            <div class="input-container">
+                <div>
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" name="first_name" required>
+                </div>
+                
+            </div>
+            <div class="input-container">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" name="last_name" required>
+            </div>
+            <div class="input-container">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+                <span id="email-error" class="error-message"></span>
+            </div>
+            <div class="input-container">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-container">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="input-container">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm_password" required>
+            </div>
+            <div class="input-container">
+                <label for="confirm-password">Phone Number</label>
+                <input type="text" id="phoneNumberInput" placeholder="Enter phone number" required>
+                <div id="validationMessage"></div>
+            </div>
+            <div class="input-container">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            <div class="input-container">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="input-container">
+                <label for="country">Country</label>
+                <input type="text" id="country" name="country" required>
+            </div>
+            <div class="input-container">
+                <label for="newsletter">Subscribe to Newsletter</label>
+                <input type="checkbox" id="newsletter" name="newsletter">
+            </div>
+            <button type="submit">Signup</button>
+            <p>Already have an account? <a href="../login.html">Login</a></p>
+        </form>
+    </div>
+    <script>
+       const phoneNumberInput = document.getElementById("phoneNumberInput");
+const validationMessage = document.getElementById("validationMessage");
+
+// Regular expression pattern for a 10-digit US phone number
+const phoneNumberPattern = /^\d{10}$/;
+
+phoneNumberInput.addEventListener("input", function () {
+  const phoneNumber = phoneNumberInput.value.trim();
+  if (phoneNumberPattern.test(phoneNumber)) {
+    // Valid phone number
+    validationMessage.textContent = "Valid phone number";
+    validationMessage.style.color = "green";
+  } else {
+    // Invalid phone number
+    validationMessage.textContent = "Invalid phone number";
+    validationMessage.style.color = "red";
+  }
+});
+
+const emailInput = document.getElementById('email');
+const emailError = document.getElementById('email-error');
+const emailForm = document.getElementById('email-form');
+
+emailForm.addEventListener('submit', function (event) {
+  // Prevent form submission
+  event.preventDefault();
+
+  // Get the entered email value
+  const emailValue = emailInput.value.trim();
+
+  // Define a regular expression for email validation
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+  // Check if the entered email matches the pattern
+  if (!emailPattern.test(emailValue)) {
+    // Invalid email format, display an error message
+    emailError.textContent = 'Please enter a valid email address.';
+    emailInput.classList.add('error');
+  } else {
+    // Valid email format, clear error message and class
+    emailError.textContent = '';
+    emailInput.classList.remove('error');
+
+    // Now, you can submit the form or perform additional actions.
+    // For example, you can use AJAX to send the email to the server.
+  }
+});
+
+
+
+</script>
+<script>
+
+</script>
+</body>
+</html>
